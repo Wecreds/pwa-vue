@@ -1,14 +1,14 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
-const produtos = ref([]);
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+const produtos = ref([])
 
 onMounted(async () => {
-  const response = await axios.get('https://fakestoreapi.com/products');
-  produtos.value = response.data;
-});
+  const response = await axios.get('https://fakestoreapi.com/products')
+  produtos.value = response.data
+})
 
-const formatPrice = (price) => `R$ ${price.toFixed(2).replace('.', ',')}`;
+const formatPrice = (price) => `R$ ${price.toFixed(2).replace('.', ',')}`
 </script>
 <template>
   <div>
@@ -42,7 +42,9 @@ const formatPrice = (price) => `R$ ${price.toFixed(2).replace('.', ',')}`;
   width: 15rem;
   height: 25rem;
   background: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.19),
+    0 6px 6px rgba(0, 0, 0, 0.23);
   border-radius: 10px;
   margin: auto;
   overflow: hidden;
