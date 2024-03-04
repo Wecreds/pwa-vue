@@ -1,7 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useScreen } from '@/composables/screen';
+
 import axios from 'axios'
 const produtos = ref([])
+const { isMobile } = useScreen();
 
 onMounted(async () => {
   const response = await axios.get('https://fakestoreapi.com/products')
@@ -12,7 +15,7 @@ const formatPrice = (price) => `R$ ${price.toFixed(2).replace('.', ',')}`
 </script>
 <template>
   <div>
-    <h1>Produtos</h1>
+    <h1 :class="isMobile ? 'mobile' : 'desktop'">Produtos</h1>
     <div class="container">
       <div class="card" v-for="produto in produtos" :key="produto.id">
         <h1 class="card--title">{{ produto.title }}</h1>
@@ -25,6 +28,11 @@ const formatPrice = (price) => `R$ ${price.toFixed(2).replace('.', ',')}`
 </template>
 
 <style scoped>
+
+.mobile{
+  color: aquamarine;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;

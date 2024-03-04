@@ -1,11 +1,13 @@
 <script setup>
 import { ref } from 'vue'
+import { useScreen } from '@/composables/screen';
 
 import CartPlus from 'vue-material-design-icons/CartPlus.vue'
 import Account from 'vue-material-design-icons/Account.vue'
 import Menu from 'vue-material-design-icons/Menu.vue'
 
 const menuAberto = ref(false)
+const { isMobile } = useScreen();
 </script>
 <template>
   <header>
@@ -14,13 +16,15 @@ const menuAberto = ref(false)
       <h1>FakeStore</h1>
     </div>
     <nav>
-      <ul :class="menuAberto ? 'menu' : ''">
-        <li>Home</li>
-        <li>Eletrônicos</li>
-        <li>Jóias</li>
-        <li>Masculino</li>
-        <li>Feminino</li>
-      </ul>
+      <div :class="isMobile ? 'mobile' : ''">
+        <ul :class="menuAberto ? 'menu' : ''">
+          <li>Home</li>
+          <li>Eletrônicos</li>
+          <li>Jóias</li>
+          <li>Masculino</li>
+          <li>Feminino</li>
+        </ul>
+      </div>
     </nav>
     <div class="header--icons">
       <Account />
